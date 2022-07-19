@@ -1,6 +1,6 @@
 resource "aws_vpc" "lab_vpc" {
   cidr_block = var.vpc_cidr
-  
+
   tags = {
     Name = var.vpc_name
   }
@@ -14,23 +14,23 @@ resource "aws_subnet" "public" {
     Name = "public"
   }
 }
-  resource "aws_subnet" "private" {
+resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.lab_vpc.id
   cidr_block = var.cidr_private
 
   tags = {
     Name = "private"
-    }
   }
+}
 
-  resource "aws_subnet" "data" {
+resource "aws_subnet" "data" {
   vpc_id     = aws_vpc.lab_vpc.id
   cidr_block = var.cidr_data
 
   tags = {
     Name = "data"
-    }
   }
+}
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.lab_vpc.id
@@ -41,7 +41,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 }
 
 resource "aws_eip" "nat_eip" {
-  vpc      = true
+  vpc = true
 }
 
 resource "aws_nat_gateway" "nat_gw" {
