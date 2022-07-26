@@ -38,3 +38,5 @@ resource "aws_route_table_association" "data" {
   subnet_id      = aws_subnet.data.id
   route_table_id = aws_route_table.nat_route_tbl.id
 }
+
+

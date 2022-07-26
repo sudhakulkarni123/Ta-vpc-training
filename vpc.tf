@@ -56,3 +56,12 @@ resource "aws_nat_gateway" "nat_gw" {
   # on the Internet Gateway for the VPC.
   depends_on = [aws_internet_gateway.internet_gateway]
 }
+
+resource "aws_db_subnet_group" "default" {
+  name       = "subnet_group"
+  subnet_ids = [aws_subnet.public.id, aws_subnet.private.id]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
